@@ -12,10 +12,16 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @Column(name= "name")
     private String name;
+    @Column(name= "type")
     private String type;
+    @Column(name= "sets")
     private int sets;
+    @Column(name= "reps")
     private int reps;
+    @Column(name= "weight")
     private int weight;
 
     //fetch = FetchType.LAZY delays loading until needed (recommended for performance).
