@@ -17,31 +17,32 @@ public class WorkoutRestController {
         this.workoutService = workoutService;
     }
 
-    //Allow users to create workouts composed of multiple exercises.
+    @GetMapping
+    public List<WorkoutDTO> list(){
+        return workoutService.getAllWorkouts();
+    }
+
     @PostMapping
-    public List<WorkoutDTO> create(){
-        return null;
+    public List<WorkoutDTO> create(@RequestBody WorkoutDTO workoutDTO){
+        workoutDTO.setId(0);
+        return workoutService.createWorkout(workoutDTO);
     }
-    //Allow users to update workouts and add comments.
+
     @PutMapping("/{id}")
-    public List<WorkoutDTO> update(){
-        return null;
+    public List<WorkoutDTO> update(@PathVariable int id, @RequestBody WorkoutDTO workoutDTO){
+        workoutDTO.setId(id);
+        return workoutService.updateWorkout(workoutDTO);
     }
-    //Allow users to delete workouts.
+
     @DeleteMapping("/{id}")
-    public List<WorkoutDTO> delete(){
-        return null;
+    public List<WorkoutDTO> delete(@PathVariable int id){
+        return workoutService.deleteWorkout(id);
     }
-    //Allow users to schedule workouts for specific dates and times.
+
     public List<WorkoutDTO> schedule(){
         return null;
     }
-    //List active or pending workouts sorted by date and time.
-    @GetMapping
-    public List<WorkoutDTO> list(){
 
-        return workoutService.getAllWorkouts();
-    }
     //Generate reports on past workouts and progress.
     public List<WorkoutDTO> generateReports(){
         return null;

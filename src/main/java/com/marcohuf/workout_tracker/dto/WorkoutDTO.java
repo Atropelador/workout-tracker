@@ -10,15 +10,6 @@ public class WorkoutDTO {
     private String name;
     private List<Exercise> exerciseList;
 
-    public static WorkoutDTO mapToDTO(Workout workout){
-        WorkoutDTO dto = new WorkoutDTO();
-        dto.setId(workout.getId());
-        dto.setName(workout.getName());
-        dto.setExerciseList(workout.getExercises());
-
-        return dto;
-    }
-
     public int getId() {
         return id;
     }

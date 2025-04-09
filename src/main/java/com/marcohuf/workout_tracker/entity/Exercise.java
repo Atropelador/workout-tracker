@@ -8,6 +8,15 @@ public class Exercise {
     public Exercise() {
     }
 
+    public Exercise(String name, String type, int sets, int reps, int weight, Workout workout) {
+        this.name = name;
+        this.type = type;
+        this.sets = sets;
+        this.reps = reps;
+        this.weight = weight;
+        this.workout = workout;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

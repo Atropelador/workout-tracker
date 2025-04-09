@@ -7,11 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 public interface WorkoutService {
-    List<Workout> createWorkout(Workout workout);
+    List<WorkoutDTO> createWorkout(WorkoutDTO workout);
 
-    List<Workout> updateWorkout(Workout workout);
+    List<WorkoutDTO> updateWorkout(WorkoutDTO workout);
 
-    List<Workout> deleteWorkout(int id);
+    List<WorkoutDTO> deleteWorkout(int id);
 
     List<WorkoutDTO> getAllWorkouts();
 

@@ -22,8 +22,14 @@ public class Workout {
     public Workout(){
     }
 
-    public Workout(int id, List<Exercise> exercises) {
+    public Workout(String name, List<Exercise> exercises) {
+        this.name = name;
+        this.exercises = exercises;
+    }
+
+    public Workout(int id, String name, List<Exercise> exercises) {
         this.id = id;
+        this.name = name;
         this.exercises = exercises;
     }
 
