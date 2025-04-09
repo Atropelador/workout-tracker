@@ -1,15 +1,20 @@
 package com.marcohuf.workout_tracker.rest;
 
 import com.marcohuf.workout_tracker.dto.WorkoutDTO;
+import com.marcohuf.workout_tracker.service.WorkoutService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/workout")
+@RequestMapping("/workouts")
 public class WorkoutRestController {
-    public WorkoutRestController() {
+    private final WorkoutService workoutService;
 
+    @Autowired
+    public WorkoutRestController(WorkoutService workoutService) {
+        this.workoutService = workoutService;
     }
 
     //Allow users to create workouts composed of multiple exercises.
@@ -32,8 +37,10 @@ public class WorkoutRestController {
         return null;
     }
     //List active or pending workouts sorted by date and time.
+    @GetMapping
     public List<WorkoutDTO> list(){
-        return null;
+
+        return workoutService.getAllWorkouts();
     }
     //Generate reports on past workouts and progress.
     public List<WorkoutDTO> generateReports(){

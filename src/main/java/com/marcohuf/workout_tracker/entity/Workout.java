@@ -13,6 +13,8 @@ public class Workout {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "name")
+    private String name;
     //cascade = CascadeType.ALL means operations on a workout will apply to its exercises.
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Exercise> exercises;
@@ -31,6 +33,14 @@ public class Workout {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Exercise> getExercises() {
