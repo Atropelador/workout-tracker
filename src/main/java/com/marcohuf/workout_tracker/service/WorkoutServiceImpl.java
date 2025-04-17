@@ -2,6 +2,7 @@ package com.marcohuf.workout_tracker.service;
 
 import com.marcohuf.workout_tracker.dto.WorkoutDTO;
 import com.marcohuf.workout_tracker.entity.Workout;
+import com.marcohuf.workout_tracker.mapper.ExerciseMapper;
 import com.marcohuf.workout_tracker.mapper.WorkoutMapper;
 import com.marcohuf.workout_tracker.repository.WorkoutRepository;
 import jakarta.persistence.EntityManager;
@@ -16,10 +17,12 @@ import java.util.List;
 public class WorkoutServiceImpl implements WorkoutService{
     private final EntityManager entityManager;
     private final WorkoutRepository workoutRepository;
+    private final WorkoutMapper workoutMapper;
 
-    public WorkoutServiceImpl(EntityManager entityManager, WorkoutRepository workoutRepository) {
+    public WorkoutServiceImpl(EntityManager entityManager, WorkoutRepository workoutRepository, WorkoutMapper workoutMapper) {
         this.entityManager = entityManager;
         this.workoutRepository = workoutRepository;
+        this.workoutMapper = workoutMapper;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class WorkoutServiceImpl implements WorkoutService{
         if (workoutDTO == null || workoutDTO.getName().isEmpty()) {
             throw new IllegalArgumentException("Workout name cannot be null or empty");
         }
-        Workout workout = WorkoutMapper.mapToEntity(workoutDTO);
+        Workout workout = workoutMapper.toEntity(workoutDTO);
         workoutRepository.save(workout);
         System.out.println("Workout created with id: " + workout.getId());
 
@@ -66,7 +69,7 @@ public class WorkoutServiceImpl implements WorkoutService{
         TypedQuery<Workout> theQuery = entityManager.createQuery("FROM Workout", Workout.class);
         System.out.println("Generated Query: " + theQuery.unwrap(org.hibernate.query.Query.class).getQueryString());
         for (Workout workout : theQuery.getResultList()){
-            WorkoutDTO dto = WorkoutMapper.mapToDTO(workout);
+            WorkoutDTO dto = workoutMapper.toDTO(workout);
             workoutList.add(dto);
         }
 

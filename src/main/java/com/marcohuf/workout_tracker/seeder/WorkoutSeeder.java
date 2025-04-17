@@ -24,9 +24,9 @@ public class WorkoutSeeder {
             );
 
             //repository.save(workout);
-            exerciseList.add(new Exercise("Bench Press", "Strenght", 3, 10,100 , workout));
+            //exerciseList.add(new Exercise("Bench Press", "Strenght", 3, 10,100 , workout));
             //exerciseRepository.saveAll(exerciseList);
-            System.out.println("✅ Seeded one workout to the database.");
+            //System.out.println("✅ Seeded one workout to the database.");
         };
     }
 }
